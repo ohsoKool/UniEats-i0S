@@ -1,0 +1,41 @@
+# Xcode
+DerivedData/
+build/
+*.xcworkspace
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.xcuserstate
+
+# Swift Package Manager
+/.build/
+/Packages
+/.swiftpm/xcode/package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build
+
+# User settings
+*.xcsettings
+*.xcuserstate
+
+# macOS hidden files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# SwiftFormat / SwiftLint (optional)
+.swiftformat
+.swiftlint.yml
+
+# Secrets / local config (if you have any)
+Secrets.plist
+.env
+
+# Logs
+*.log
