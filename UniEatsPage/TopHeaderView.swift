@@ -20,6 +20,7 @@ struct TopHeaderView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 50, height: 70)
+                    .padding(.leading, 5)
                 Text(logoName)
                     .font(.custom(fontName, size: fontSize))
                     .foregroundColor(.black)
@@ -30,6 +31,7 @@ struct TopHeaderView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 70)
+                .padding(.trailing, 8)
         }
     }
 }
