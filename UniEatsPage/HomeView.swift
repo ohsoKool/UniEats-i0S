@@ -13,62 +13,16 @@ struct HomeView: View {
     let bottomMenuColor = Color("bottom-color")
     var body: some View {
         ZStack {
-            Color(.white)
-            
+            LinearGradient(colors: [.white, .orange.opacity(0.2)], startPoint: .bottom, endPoint: .top)
             VStack {
-                HStack {
-                    Image("unieatsicon-removebg-preview")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 70)
-                    Spacer()
-                    Text("Swiz King")
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Image("unieatsheart")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 70)
-                }
-//                .padding()
-//                .background(.gray)
-                HStack {
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80, height: 80)
-                    Spacer()
-                    VStack {
-                        Text("Hello Artharv")
-                            .font(.title2)
-                            .foregroundColor(.black)
-                            .fontWeight(.bold)
-                            .padding()
-                        HStack {
-                            Image("redpin")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 30, height: 50)
-                            Text("Pune,Maharashtra,India")
-                            Spacer()
-                        }
-                    }
-                }
-//                .background(.blue)
-                TextField("Search Product, Dish", text: $inputText)
-                    .padding()
-                    .frame(width: 350)
-                    .border(.black, width: 2)
-                    .cornerRadius(10)
-                Spacer()
+                TopHeaderView(
+                    logoImageName: "unieatslogo", logoName: "Swiz King", rightIconName: "unieatsheart"
+                )
+
+                UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Artharv", redpin: "redpin", userlocation: "Pune, Maharashtra,India")
+                SearchBarView()
+
+//                Spacer()
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(categories, id: \.self) {
@@ -84,13 +38,13 @@ struct HomeView: View {
                     }
                 }
             }
-         }
+        }
         Image("burger")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 300, height: 300)
-        
-        HStack {
+
+        HStack(alignment: .center, spacing: 10) {
             Image(systemName: "house.fill")
                 .resizable()
                 .aspectRatio(contentMode: .fit)

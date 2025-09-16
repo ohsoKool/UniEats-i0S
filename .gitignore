@@ -1,41 +1,32 @@
+# macOS
+.DS_Store
+
 # Xcode
 DerivedData/
 build/
 *.xcworkspace
+*.xcuserstate
+
+# Xcode user data
 xcuserdata/
 *.moved-aside
-*.hmap
-*.ipa
-*.xcuserstate
 
 # Swift Package Manager
 /.build/
-/Packages
-/.swiftpm/xcode/package.resolved
+Packages/
+Package.resolved
 
-# CocoaPods
+# CocoaPods (if you use them later)
 Pods/
-Podfile.lock
 
-# Carthage
-Carthage/Build
+# Carthage (if you use it later)
+Carthage/
 
-# User settings
-*.xcsettings
-*.xcuserstate
+# Fastlane (if you use automation later)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
 
-# macOS hidden files
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# SwiftFormat / SwiftLint (optional)
-.swiftformat
-.swiftlint.yml
-
-# Secrets / local config (if you have any)
-Secrets.plist
-.env
-
-# Logs
-*.log
+# Other
+*.lock
