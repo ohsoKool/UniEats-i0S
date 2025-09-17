@@ -9,27 +9,30 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        ZStack {
-//            Image("beige-bg")
-            LinearGradient(colors: [.white, .orange.opacity(0.2)], startPoint: .bottom, endPoint: .top)
-                .ignoresSafeArea()
-            VStack {
-                TopHeaderView(
-                    logoImageName: "unieatslogo", logoName: "Swiz King", rightIconName: "unieatsheart"
-                )
-                UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Pune, Maharashtra,India")
-                    .padding([.bottom])
-                    .padding([.leading], 7)
-
-                SearchBarView()
-                CategoryScrollView()
-                FeaturedDishView(featuredDish: "burger")
+        NavigationStack{
+            ZStack {
+                //            Image("beige-bg")
+                LinearGradient(colors: [.white, .orange.opacity(0.5)], startPoint: .bottom, endPoint: .top)
+                    .ignoresSafeArea()
                 VStack {
-                    Spacer()
-                    BottomNavbarView()
+                    TopHeaderView(
+                        logoImageName: "unieatslogo", logoName: "UniEats", rightIconName: "unieatsheart"
+                    )
+                    UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Shaikpet,Hyderabad,India")
+                        .padding([.bottom])
+                        .padding([.leading], 7)
+                    
+                    SearchBarView()
+                    CategoryScrollView()
+                    FeaturedDishView(featuredDish: "burger")
+                    VStack {
+                        Spacer()
+                        BottomNavbarView()
+                    }
                 }
             }
         }
+
     }
 }
 

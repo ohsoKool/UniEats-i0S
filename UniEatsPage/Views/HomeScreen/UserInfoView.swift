@@ -14,15 +14,20 @@ struct UserInfoView: View {
     var userlocation: String
     var body: some View {
         HStack(spacing: 5) {
-            Image(systemName: avatar)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 70, height: 70)
-                .padding(.leading, 5)
+            NavigationLink(destination: UserAvatarView()){
+                Image(systemName: avatar)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 70, height: 70)
+                    .padding(.leading, 5)
+                    .foregroundColor(.black)
+            }
             VStack(alignment: .leading, spacing: 0) {
                 Text(greetUser)
-                    .font(.title2)
+                    .font(.custom("DancingScript-Medium", size: 30))
                     .fontWeight(.medium)
+                    .foregroundColor(.black)
+                    .shadow(radius: 5)
                     .padding([.horizontal, .vertical], 3)
 //                    .border(.black)
                 HStack(spacing: 0) {
@@ -32,6 +37,8 @@ struct UserInfoView: View {
                         .frame(width: 15, height: 30)
                     Text(userlocation)
                         .padding(5)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
                     Spacer()
                 }
 //                .border(.green)
@@ -41,5 +48,5 @@ struct UserInfoView: View {
 }
 
 #Preview {
-    UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Artharv", redpin: "redpin", userlocation: "Pune, Maharashtra,India")
+    UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Hyderabad,Telangana,India")
 }

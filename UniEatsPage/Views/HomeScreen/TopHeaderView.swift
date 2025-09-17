@@ -27,11 +27,13 @@ struct TopHeaderView: View {
                     .fontWeight(.bold)
             }
             Spacer()
-            Image(rightIconName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 70)
-                .padding(.trailing, 8)
+            NavigationLink(destination: FavoriteRestaurants()){
+                Image(rightIconName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 70)
+                    .padding(.trailing, 8)
+            }
         }
     }
 }
