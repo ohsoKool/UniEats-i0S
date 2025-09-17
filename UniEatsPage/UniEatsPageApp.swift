@@ -10,6 +10,7 @@ import SwiftUI
 struct UniEatsPageApp: App {
     init() {
         print("The Application has started!")
+        UIView.appearance().overrideUserInterfaceStyle = .light
     }
 
     var body: some Scene {

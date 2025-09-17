@@ -14,7 +14,7 @@ struct UserInfoView: View {
     var userlocation: String
     var body: some View {
         HStack(spacing: 5) {
-            NavigationLink(destination: UserAvatarView()){
+            NavigationLink(destination: UserAvatarView()) {
                 Image(systemName: avatar)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

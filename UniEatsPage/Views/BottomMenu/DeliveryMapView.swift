@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-struct DeliveryMapView: View{
-    var body: some View{
+
+struct DeliveryMapView: View {
+    var body: some View {
         Text("DeliveryView")
             .font(.largeTitle)
     }
 }
-

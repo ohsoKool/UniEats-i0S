@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-struct SettingsView: View{
+
+struct SettingsView: View {
     let userProfile = ["Name : Rishi Kesh", "Mobile : 9835473528", "Theme : White", "Privacy Policy", "About"]
-    var body: some View{
-        VStack(alignment: .leading){
+    var body: some View {
+        VStack(alignment: .leading) {
             List(userProfile, id: \.self) { option in
                 Text(option)
                     .font(.title2)
@@ -20,10 +21,9 @@ struct SettingsView: View{
             }
 //            .padding(0)
         }
-
     }
 }
 
-#Preview{
+#Preview {
     SettingsView()
 }

@@ -27,7 +27,7 @@ struct TopHeaderView: View {
                     .fontWeight(.bold)
             }
             Spacer()
-            NavigationLink(destination: FavoriteRestaurants()){
+            NavigationLink(destination: FavoriteRestaurants()) {
                 Image(rightIconName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
-struct FavoriteRestaurants: View{
-    var body: some View{
+
+struct FavoriteRestaurants: View {
+    var body: some View {
         Text("Favourite Restaurants")
     }
 }

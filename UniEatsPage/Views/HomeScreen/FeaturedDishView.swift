@@ -11,13 +11,12 @@ struct FeaturedDishView: View {
     var body: some View {
         Image(featuredDish)
             .resizable()
-            .scaledToFill()   // fills the frame
-            .frame(width: 350, height: 350)
-//            .clipped()        // cuts off overflow
+            .scaledToFill() // fills the frame
+            .frame(width: 300, height: 300)
+//            .clipped() // cuts off overflow
 //            .border(.black)   // keeps your border visible
     }
 }
-
 
 #Preview {
     FeaturedDishView(featuredDish: "burger")

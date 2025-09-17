@@ -9,11 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 //            Image("beige-bg")
-                LinearGradient(colors: [.white, .orange.opacity(0.5)], startPoint: .bottom, endPoint: .top)
-                    .ignoresSafeArea()
+                LinearGradientView()
                 VStack {
                     TopHeaderView(
                         logoImageName: "unieatslogo", logoName: "UniEats", rightIconName: "unieatsheart"
@@ -21,7 +20,7 @@ struct HomeView: View {
                     UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Shaikpet,Hyderabad,India")
                         .padding([.bottom])
                         .padding([.leading], 7)
-                    
+
                     SearchBarView()
                     CategoryScrollView()
                     FeaturedDishView(featuredDish: "burger")
@@ -32,7 +31,6 @@ struct HomeView: View {
                 }
             }
         }
-
     }
 }
 

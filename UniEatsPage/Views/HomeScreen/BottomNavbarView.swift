@@ -14,47 +14,47 @@ struct BottomNavbarView: View {
     var settingsicon: String = "gearshape"
     var bottomMenuColor = Color.orange.opacity(0.2)
     var body: some View {
-            HStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .center, spacing: 10) {
 //                NavigationLink(destination: HomeView()){
-                    Image(systemName: homeIcon)
-                        .resizable()
-                        .foregroundColor(.black)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 40)
-                        .padding(.all, 5)
-                        .background(.white)
-                        .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                        .cornerRadius(20)
-                        .padding(8)
+            Image(systemName: homeIcon)
+                .resizable()
+                .foregroundColor(.black)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 50, height: 40)
+                .padding(.all, 5)
+                .background(.white)
+                .overlay(Circle().stroke(Color.white, lineWidth: 1))
+                .cornerRadius(20)
+                .padding(8)
 //                }
-                NavigationLink(destination: DeliveryMapView()) {
-                    Image(deliverIcon)
-                        .resizable()
-                        .foregroundColor(.black)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 70, height: 60)
-                        .padding(8)
-                            }
-                NavigationLink(destination: CartView()) {
-                    Image(systemName: cartIcon)
-                        .resizable()
-                        .foregroundColor(.black)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 40)
-                        .padding(8)
-                }
-                NavigationLink(destination: SettingsView()) {
-                    Image(systemName: settingsicon)
-                        .resizable()
-                        .foregroundColor(.black)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 40)
-                        .padding(8)
-                }
+            NavigationLink(destination: RestaurantView()) {
+                Image(systemName: cartIcon)
+                    .resizable()
+                    .foregroundColor(.black)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 40)
+                    .padding(8)
             }
-            .background(bottomMenuColor)
-            .cornerRadius(64)
-            .padding()
+            NavigationLink(destination: DeliveryMapView()) {
+                Image(deliverIcon)
+                    .resizable()
+                    .foregroundColor(.black)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 70, height: 60)
+                    .padding(8)
+            }
+            NavigationLink(destination: SettingsView()) {
+                Image(systemName: settingsicon)
+                    .resizable()
+                    .foregroundColor(.black)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 40)
+                    .padding(8)
+            }
+        }
+        .background(bottomMenuColor)
+        .cornerRadius(64)
+        .padding()
     }
 }
 
