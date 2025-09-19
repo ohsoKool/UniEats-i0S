@@ -24,9 +24,10 @@ struct CategoryScrollView: View {
                         )
                         .cornerRadius(20)
                 }
+                .padding(2)
             }
         }
-        .padding(.leading, 3)
+        .padding(.leading, 12)
     }
 }
 

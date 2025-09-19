@@ -23,7 +23,7 @@ struct SearchBarView: View {
         )
         .padding(.horizontal)
         .onTapGesture {
-            isFocused = false // Dismiss keyboard if tapping outside
+            isFocused = true // Dismiss keyboard if tapping outside
         }
     }
 }

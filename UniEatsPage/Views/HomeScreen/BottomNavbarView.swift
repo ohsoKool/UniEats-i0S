@@ -8,47 +8,57 @@
 import SwiftUI
 
 struct BottomNavbarView: View {
+    @ObservedObject var cart: CartModel // receives the shared cart
+
     var homeIcon: String = "house.fill"
-    var deliverIcon: String = "delivery"
+    var favoriteIcon: String = "heart"
     var cartIcon: String = "cart"
     var settingsicon: String = "gearshape"
     var bottomMenuColor = Color.orange.opacity(0.2)
+
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
-//                NavigationLink(destination: HomeView()){
+        HStack(alignment: .center, spacing: 15) {
             Image(systemName: homeIcon)
                 .resizable()
                 .foregroundColor(.black)
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 40)
+                .frame(width: 30)
                 .padding(.all, 5)
                 .background(.white)
                 .overlay(Circle().stroke(Color.white, lineWidth: 1))
                 .cornerRadius(20)
                 .padding(8)
-//                }
-            NavigationLink(destination: RestaurantView()) {
+
+            NavigationLink(destination: FavoriteRestaurantsView()) {
+                Image(systemName: favoriteIcon)
+                    .resizable()
+                    .foregroundColor(.black)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30)
+                    .padding(8)
+            }
+            NavigationLink(
+                destination: RestaurantMenu(
+                    restaurantName: "The Shawarma Wrapz",
+                    restaurantLocation: "O.U.Colony",
+                    restaurantRating: "4.5⭐",
+                    cart: cart
+                )
+            ) {
                 Image(systemName: cartIcon)
                     .resizable()
                     .foregroundColor(.black)
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 40)
+                    .frame(width: 30)
                     .padding(8)
             }
-            NavigationLink(destination: DeliveryMapView()) {
-                Image(deliverIcon)
-                    .resizable()
-                    .foregroundColor(.black)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 70, height: 60)
-                    .padding(8)
-            }
+
             NavigationLink(destination: SettingsView()) {
                 Image(systemName: settingsicon)
                     .resizable()
                     .foregroundColor(.black)
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 40)
+                    .frame(width: 30)
                     .padding(8)
             }
         }
@@ -59,5 +69,5 @@ struct BottomNavbarView: View {
 }
 
 #Preview {
-    BottomNavbarView()
+    BottomNavbarView(cart: CartModel(), homeIcon: "house.fill", favoriteIcon: "heart", cartIcon: "cart", settingsicon: "gearshape")
 }

@@ -8,25 +8,33 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var cart = CartModel() // shared cart for the whole app
+
     var body: some View {
         NavigationStack {
             ZStack {
-                //            Image("beige-bg")
                 LinearGradientView()
                 VStack {
                     TopHeaderView(
-                        logoImageName: "unieatslogo", logoName: "UniEats", rightIconName: "unieatsheart"
+                        logoImageName: "unieatslogo",
+                        appName: "UniEats",
+                        userAvatar: "person.crop.circle"
                     )
-                    UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Shaikpet,Hyderabad,India")
-                        .padding([.bottom])
-                        .padding([.leading], 7)
+                    UserInfoView(
+                        greetUser: "Hello Rishi :)",
+                        redpin: "redpin",
+                        userlocation: "Shaikpet,Hyderabad,India"
+                    )
+                    .padding([.bottom])
+                    .padding([.leading], 7)
 
                     SearchBarView()
                     CategoryScrollView()
                     FeaturedDishView(featuredDish: "burger")
+
                     VStack {
                         Spacer()
-                        BottomNavbarView()
+                        BottomNavbarView(cart: cart) // pass the cart down
                     }
                 }
             }
@@ -35,5 +43,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(cart: CartModel())
 }

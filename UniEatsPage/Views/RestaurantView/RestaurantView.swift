@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct RestaurantView: View {
+    @StateObject var cart = CartModel()
     var body: some View {
         ZStack {
             LinearGradientView()
-            RestaurantMenu(restaurantName: "The Shawarma Wrapz", restaurantLocation: "O.U.Colony", restaurantRating: "4.5⭐")
         }
     }
 }

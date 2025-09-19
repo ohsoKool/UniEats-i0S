@@ -8,26 +8,17 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    var avatar: String
     var greetUser: String
     var redpin: String
     var userlocation: String
     var body: some View {
         HStack(spacing: 5) {
-            NavigationLink(destination: UserAvatarView()) {
-                Image(systemName: avatar)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 70, height: 70)
-                    .padding(.leading, 5)
-                    .foregroundColor(.black)
-            }
             VStack(alignment: .leading, spacing: 0) {
                 Text(greetUser)
                     .font(.custom("DancingScript-Medium", size: 30))
                     .fontWeight(.medium)
                     .foregroundColor(.black)
-                    .shadow(radius: 5)
+//                    .shadow(radius: 0)
                     .padding([.horizontal, .vertical], 3)
 //                    .border(.black)
                 HStack(spacing: 0) {
@@ -35,10 +26,15 @@ struct UserInfoView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 15, height: 30)
+                        .padding([.horizontal], 4)
+//                        .border(.black)
                     Text(userlocation)
-                        .padding(5)
+                        .frame(alignment: .leading)
+                        .font(.system(size: 18))
+                        .padding(.all, 5)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
+//                        .border(.black)
                     Spacer()
                 }
 //                .border(.green)
@@ -48,5 +44,5 @@ struct UserInfoView: View {
 }
 
 #Preview {
-    UserInfoView(avatar: "person.crop.circle", greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Hyderabad,Telangana,India")
+    UserInfoView(greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Hyderabad,Telangana,India")
 }
