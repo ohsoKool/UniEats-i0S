@@ -18,15 +18,15 @@ struct LogOutView: View {
             Text("Are you sure you want to Logout?")
                 .padding([.horizontal, .bottom], 10)
                 .padding(.top, 0).font(.headline)
-//                .foregroundColor(.black)
+                .foregroundColor(.black)
             HStack(spacing: 15) {
-                SaveButtonView(destructiveActionButton: true, buttonName: "Cancel")
+                SaveButtonView(InvertedButton: true, buttonName: "Cancel")
                 SaveButtonView(buttonName: "Logout")
             }
             .padding()
         }
         .padding([.horizontal, .vertical], 30)
-//        .background(.white)
+        .background(.white)
         .cornerRadius(24)
 //        .border(.black)
     }

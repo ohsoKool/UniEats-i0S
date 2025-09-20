@@ -11,9 +11,9 @@ struct DishCard: View {
     var dish: String
     var price: Int
     var img: String
-    
+
     @ObservedObject var cart: CartModel
-    
+
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
@@ -23,9 +23,9 @@ struct DishCard: View {
                 Text("₹\(price)")
                     .foregroundColor(.gray)
             }
-            
+
             Spacer()
-            
+
             Image(img)
                 .resizable()
                 .scaledToFill()
@@ -49,4 +49,8 @@ struct DishCard: View {
                 )
         }
     }
+}
+
+#Preview {
+    DishCard(dish: "Pasta", price: 499, img: "pasta", cart: CartModel())
 }

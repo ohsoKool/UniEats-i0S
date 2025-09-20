@@ -12,14 +12,15 @@ struct SettingsView: View {
     var body: some View {
         ZStack {
             LinearGradientView()
-            VStack(spacing: 25) {
+            VStack(spacing: 0) {
+                Spacer()
                 UploadPictureView()
-                InputDataFieldView(placeholderText: "e.g. John ", fieldName: "FullName:")
-                InputDataFieldView(placeholderText: "e.g. john12@gmail.com", fieldName: "Email:")
-                InputDataFieldView(placeholderText: "e.g. 9397507371", fieldName: "Mobile:")
+                InputDataFieldView(placeholderText: "Name : e.g. John ")
+                InputDataFieldView(placeholderText: "Email : e.g. john12@gmail.com")
+                InputDataFieldView(placeholderText: "Mobile : e.g. 9397507371")
                     .keyboardType(.phonePad)
                 Spacer()
-                SaveButtonView(buttonName: "save")
+                SaveButtonView(buttonName: "Save")
             }.navigationTitle("Edit Profile")
         }
     }

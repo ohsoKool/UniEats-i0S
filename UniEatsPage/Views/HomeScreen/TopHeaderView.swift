@@ -27,7 +27,7 @@ struct TopHeaderView: View {
                     .fontWeight(.bold)
             }
             Spacer()
-            NavigationLink(destination: UserAvatarView()) {
+            NavigationLink(destination: UserAddressesView()) {
                 Image(systemName: userAvatar)
                     .resizable()
                     .foregroundColor(.black.opacity(1.0))

@@ -8,29 +8,27 @@ import SwiftUI
 
 struct AddNewUserAddress: View {
     var body: some View {
-        VStack(spacing: 30) {
+//        NavigationStack {
+        VStack(spacing: 40) {
             VStack(alignment: .center) {
-                Text("Add New Address")
-//                    .font(.largeTitle)
-//                    .padding()
-//                Text("Your Location")
-//                    .font(.headline)
-//                    .padding()
-                InputDataFieldView(placeholderText: "State")
-                InputDataFieldView(placeholderText: "District")
-                InputDataFieldView(placeholderText: "Society / Street Name")
+                InputDataFieldView(placeholderText: "Name: e.g. Ordering for Someone else?")
                 InputDataFieldView(placeholderText: "House No / Flat No")
+                InputDataFieldView(placeholderText: "Society / Street Name")
                 InputDataFieldView(placeholderText: "Pincode")
+                //                InputDataFieldView(placeholderText: "State")
+                InputDataFieldView(placeholderText: "Mobile")
+                InputDataFieldView(placeholderText: "Instructions: e.g. Ring the Bell")
             }
-//            Spacer()
+            //            Spacer()
             HStack(spacing: 12) {
                 SaveButtonView(buttonName: "Home")
-                SaveButtonView(destructiveActionButton: true, buttonName: "Work")
-                SaveButtonView(destructiveActionButton: true, buttonName: "Other")
+                SaveButtonView(InvertedButton: true, buttonName: "Work")
+                SaveButtonView(InvertedButton: true, buttonName: "Other")
             }
         }
-        .navigationTitle("Add New Address")
+        .navigationTitle("ADD NEW ADDRESS")
         .navigationBarTitleDisplayMode(.inline)
+//        }
     }
 }
 

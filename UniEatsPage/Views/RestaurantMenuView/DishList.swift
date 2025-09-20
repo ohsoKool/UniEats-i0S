@@ -20,7 +20,6 @@ struct DishList: View {
             DishCard(dish: dish, price: price, img: img, cart: cart)
                 .listRowBackground(Color.white)
         }
-
         .listStyle(.plain)
     }
 }
