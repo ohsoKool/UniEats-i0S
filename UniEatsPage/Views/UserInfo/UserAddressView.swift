@@ -21,30 +21,32 @@ struct UserAddressesView: View {
     ]
 
     var body: some View {
-        VStack {
-            InputDataFieldView(placeholderText: "Search your saved addresses")
-
-            List {
-                ForEach(Array(zip(userAddresses, addressTypes)), id: \.0) { address, type in
-                    UserAddressCard(
-                        addressTypeIcon: "house",
-                        addressType: type,
-                        phoneNumber: phoneNumber,
-                        userAddress: address
-                    )
+        ZStack {
+            LinearGradientView()
+            VStack {
+                InputDataFieldView(placeholderText: "Search your saved addresses")
+                List {
+                    ForEach(Array(zip(userAddresses, addressTypes)), id: \.0) { address, type in
+                        UserAddressCard(
+                            addressTypeIcon: "house",
+                            addressType: type,
+                            phoneNumber: phoneNumber,
+                            userAddress: address
+                        )
+                    }
+                }
+                .listStyle(.plain)
+                NavigationLink(destination: AddNewUserAddress()) {
+                    HStack {
+                        Spacer()
+                        SaveButtonView(InvertedButton: true, buttonName: "ADD NEW ADDRESS")
+                        Spacer()
+                    }
                 }
             }
-            .listStyle(.plain)
-            NavigationLink(destination: AddNewUserAddress()) {
-                HStack {
-                    Spacer()
-                    SaveButtonView(InvertedButton: true, buttonName: "ADD NEW ADDRESS")
-                    Spacer()
-                }
-            }
+            .navigationTitle("ADDRESSES")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("ADDRESSES")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

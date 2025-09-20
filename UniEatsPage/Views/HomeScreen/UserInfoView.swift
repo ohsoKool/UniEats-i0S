@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    var greetUser: String
+    var greetUser: String = ""
     var redpin: String
     var userlocation: String
     var body: some View {

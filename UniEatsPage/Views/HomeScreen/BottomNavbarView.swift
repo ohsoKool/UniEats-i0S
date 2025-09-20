@@ -29,14 +29,6 @@ struct BottomNavbarView: View {
                 .cornerRadius(20)
                 .padding(8)
 
-            NavigationLink(destination: FavoriteRestaurantsView()) {
-                Image(systemName: favoriteIcon)
-                    .resizable()
-                    .foregroundColor(.black)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30)
-                    .padding(8)
-            }
             NavigationLink(
                 destination: RestaurantMenu(
                     restaurantName: "The Shawarma Wrapz",
@@ -52,7 +44,14 @@ struct BottomNavbarView: View {
                     .frame(width: 30)
                     .padding(8)
             }
-
+            NavigationLink(destination: FavoritesDishesView()) {
+                Image(systemName: favoriteIcon)
+                    .resizable()
+                    .foregroundColor(.black)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30)
+                    .padding(8)
+            }
             NavigationLink(destination: SettingsView()) {
                 Image(systemName: settingsicon)
                     .resizable()

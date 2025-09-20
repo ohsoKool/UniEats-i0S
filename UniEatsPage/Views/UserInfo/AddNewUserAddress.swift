@@ -8,27 +8,28 @@ import SwiftUI
 
 struct AddNewUserAddress: View {
     var body: some View {
-//        NavigationStack {
-        VStack(spacing: 40) {
-            VStack(alignment: .center) {
-                InputDataFieldView(placeholderText: "Name: e.g. Ordering for Someone else?")
-                InputDataFieldView(placeholderText: "House No / Flat No")
-                InputDataFieldView(placeholderText: "Society / Street Name")
-                InputDataFieldView(placeholderText: "Pincode")
-                //                InputDataFieldView(placeholderText: "State")
-                InputDataFieldView(placeholderText: "Mobile")
-                InputDataFieldView(placeholderText: "Instructions: e.g. Ring the Bell")
+        ZStack {
+            LinearGradientView()
+            VStack(spacing: 40) {
+                VStack(alignment: .center) {
+                    InputDataFieldView(placeholderText: "Name: e.g. Ordering for Someone else?")
+                    InputDataFieldView(placeholderText: "House No / Flat No")
+                    InputDataFieldView(placeholderText: "Society / Street Name")
+                    InputDataFieldView(placeholderText: "Pincode")
+                    //                InputDataFieldView(placeholderText: "State")
+                    InputDataFieldView(placeholderText: "Mobile")
+                    InputDataFieldView(placeholderText: "Instructions: e.g. Ring the Bell")
+                }
+                //            Spacer()
+                HStack(spacing: 12) {
+                    SaveButtonView(buttonName: "Home")
+                    SaveButtonView(InvertedButton: true, buttonName: "Work")
+                    SaveButtonView(InvertedButton: true, buttonName: "Other")
+                }
             }
-            //            Spacer()
-            HStack(spacing: 12) {
-                SaveButtonView(buttonName: "Home")
-                SaveButtonView(InvertedButton: true, buttonName: "Work")
-                SaveButtonView(InvertedButton: true, buttonName: "Other")
-            }
+            .navigationTitle("ADD NEW ADDRESS")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("ADD NEW ADDRESS")
-        .navigationBarTitleDisplayMode(.inline)
-//        }
     }
 }
 

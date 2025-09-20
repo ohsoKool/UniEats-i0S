@@ -1,9 +1,7 @@
+// DishCard.swift
+// UniEatsPage
 //
-//  DishCard.swift
-//  UniEatsPage
-//
-//  Created by Rishikesh Gunda on 9/19/25.
-//
+// Created by Rishikesh Gunda on 9/19/25.
 
 import SwiftUI
 
@@ -11,21 +9,36 @@ struct DishCard: View {
     var dish: String
     var price: Int
     var img: String
-
+    var desc: String
+    var restaurantName: String = "Kortyard Cafe"
+    var nameRestaurantSeparator = "-"
+    
     @ObservedObject var cart: CartModel
-
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(dish)
-                    .font(.system(size: 20))
-                    .foregroundColor(.black)
+                HStack {
+                    Text(dish)
+                        .font(.system(size: 20))
+                        .foregroundColor(.black)
+                    Text(nameRestaurantSeparator)
+                        .font(.system(size: 20))
+                        .foregroundColor(.black)
+                    Text(restaurantName)
+                        .font(.system(size: 20))
+                        .foregroundColor(.black)
+                }
+                
                 Text("₹\(price)")
+                    .foregroundColor(.black.opacity(0.7))
+                
+                Text(desc)
                     .foregroundColor(.gray)
             }
-
+            
             Spacer()
-
+            
             Image(img)
                 .resizable()
                 .scaledToFill()
@@ -34,7 +47,7 @@ struct DishCard: View {
                 .overlay(
                     Button(action: {
                         cart.addItem(dish: dish)
-                        print("\(dish) added to cart!")
+                        // print("\(dish) added to cart!")
                     }) {
                         Text("ADD")
                             .font(.caption)
@@ -52,5 +65,11 @@ struct DishCard: View {
 }
 
 #Preview {
-    DishCard(dish: "Pasta", price: 499, img: "pasta", cart: CartModel())
+    DishCard(
+        dish: "Pasta",
+        price: 499,
+        img: "pasta",
+        desc: "Secret Recipe Filled with Joy",
+        cart: CartModel()
+    )
 }
