@@ -14,7 +14,7 @@ struct BottomNavbarView: View {
     var favoriteIcon: String = "heart"
     var cartIcon: String = "cart"
     var settingsicon: String = "gearshape"
-    var bottomMenuColor = Color.orange.opacity(0.2)
+    var bottomMenuColor = Color.orange.opacity(0.6)
 
     var body: some View {
         HStack(alignment: .center, spacing: 15) {

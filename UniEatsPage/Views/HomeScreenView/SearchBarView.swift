@@ -22,6 +22,7 @@ struct SearchBarView: View {
                 .stroke(Color.black, lineWidth: 1)
         )
         .padding(.horizontal)
+//        .border(.black)
         .onTapGesture {
             isFocused = true // Dismiss keyboard if tapping outside
         }

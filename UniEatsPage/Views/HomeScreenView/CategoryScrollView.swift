@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct CategoryScrollView: View {
-    var categories = ["All", "Burger", "Pizza", "Sandwich", "Pasta"]
+    var categories = ["Burger", "SeaFood", "Pizza", "Sandwich", "Pasta"]
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 6) {
@@ -17,7 +17,7 @@ struct CategoryScrollView: View {
                         .frame(width: 80, height: 35)
                         .padding(.all, 3)
                         .background(
-                            category == "All" ? Color.orange.opacity(0.2) : Color.clear
+                            category == "Burger" ? Color.orange.opacity(0.2) : Color.clear
                         ).overlay(
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.black, lineWidth: 1)

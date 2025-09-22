@@ -31,10 +31,16 @@ struct RestaurantMenu: View {
                         dishImages: dishImages,
                         cart: cart
                     )
+                    .cornerRadius(24)
                 }
+//                VStack {
+//                    Spacer()
+//                    BottomNavbarView(cart: cart) // pass the cart down
+//                }
                 .navigationTitle("Menu")
             }
         }
+//        .navigationBarBackButtonHidden()
     }
 }
 

@@ -14,7 +14,7 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 LinearGradientView()
-                VStack {
+                VStack(spacing: 0) {
                     TopHeaderView(
                         logoImageName: "unieatslogo",
                         appName: "UniEats",
@@ -29,8 +29,12 @@ struct HomeView: View {
                     .padding([.leading], 7)
 
                     SearchBarView()
+//                        .padding(.all,0)
                     CategoryScrollView()
+                    Spacer()
                     FeaturedDishView(featuredDish: "burger")
+                        .padding(.bottom, 25)
+                    PopularRestaurantsView()
 
                     VStack {
                         Spacer()
@@ -39,6 +43,7 @@ struct HomeView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

@@ -15,7 +15,7 @@ struct UniEatsPageApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            LandingPageView()
         }
     }
 }

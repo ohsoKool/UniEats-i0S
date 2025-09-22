@@ -28,6 +28,7 @@ struct FavoritesDishesView: View {
                         }
                     }
                     .listStyle(.plain)
+                    .cornerRadius(24)
                 }
             }
             .navigationTitle("Favorites")

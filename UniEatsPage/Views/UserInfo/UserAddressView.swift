@@ -36,6 +36,7 @@ struct UserAddressesView: View {
                     }
                 }
                 .listStyle(.plain)
+                .cornerRadius(24)
                 NavigationLink(destination: AddNewUserAddress()) {
                     HStack {
                         Spacer()
