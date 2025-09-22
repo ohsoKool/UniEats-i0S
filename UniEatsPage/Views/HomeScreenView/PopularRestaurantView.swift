@@ -29,7 +29,7 @@ struct PopularRestaurantsView: View {
                 HStack(spacing: 5) {
                     ForEach(horizontalList, id: \.self) { _ in
                         RestaurantCardView()
-                            .animation(.easeOut(duration: 2), value: animateRestaurantList).offset(x: animateRestaurantList ? 0 : -100)
+                            .animation(.easeInOut(duration: 5).repeatForever(autoreverses: true).delay(2), value: animateRestaurantList).offset(x: animateRestaurantList ? 0 : -100)
                     }
                 }
                 .onAppear {
