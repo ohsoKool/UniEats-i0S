@@ -11,38 +11,39 @@ struct UserInfoView: View {
     var greetUser: String = ""
     var redpin: String
     var userlocation: String
+    var redpinSize: CGSize = .init(width: 20, height: 30)
+
     var body: some View {
-        HStack(spacing: 5) {
-            VStack(alignment: .leading, spacing: 0) {
+        HStack(spacing: 8) { // minimal spacing; parent can add more if needed
+            VStack(alignment: .leading, spacing: 4) {
                 Text(greetUser)
                     .font(.custom("DancingScript-Medium", size: 30))
                     .fontWeight(.medium)
                     .foregroundColor(.black)
-//                    .shadow(radius: 0)
-                    .padding([.horizontal, .vertical], 3)
-//                    .border(.black)
-                HStack(spacing: 0) {
+
+                HStack(spacing: 4) {
                     Image(redpin)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 15, height: 30)
-                        .padding([.horizontal], 4)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: redpinSize.width, height: redpinSize.height)
 //                        .border(.black)
                     Text(userlocation)
-                        .frame(alignment: .leading)
                         .font(.system(size: 18))
-                        .padding(.all, 5)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
 //                        .border(.black)
                     Spacer()
                 }
-//                .border(.green)
             }
+            Spacer() // ensures content stays left-aligned
         }
     }
 }
 
 #Preview {
-    UserInfoView(greetUser: "Hello Rishi :)", redpin: "redpin", userlocation: "Hyderabad,Telangana,India")
+    UserInfoView(
+        greetUser: "Hello Rishi :)",
+        redpin: "redpin",
+        userlocation: "Hyderabad, Telangana, India"
+    )
 }

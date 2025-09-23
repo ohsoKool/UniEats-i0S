@@ -1,26 +1,24 @@
-//
-//  TopHeaderView.swift
-//  UniEatsPage
-//
-//  Created by Rishikesh Gunda on 9/16/25.
-//
 import SwiftUI
 
 struct TopHeaderView: View {
-//    --- Parameters ---
     var logoImageName: String
     var appName: String
     var userAvatar: String
     var fontName: String = "DancingScript-Bold"
     var fontSize: CGFloat = 35
+
+    // Add size parameters because it's difficult to control the sizing from the parent
+    var logoSize: CGSize = .init(width: 50, height: 50)
+    var avatarSize: CGSize = .init(width: 50, height: 50)
+
     var body: some View {
         HStack {
-            HStack {
+            HStack(spacing: 8) {
                 Image(logoImageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 70)
-                    .padding(.leading, 5)
+                    .frame(width: logoSize.width, height: logoSize.height)
+
                 Text(appName)
                     .font(.custom(fontName, size: fontSize))
                     .foregroundColor(.black)
@@ -30,17 +28,20 @@ struct TopHeaderView: View {
             NavigationLink(destination: UserAddressesView()) {
                 Image(systemName: userAvatar)
                     .resizable()
-                    .foregroundColor(.black.opacity(1.0))
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 70)
-                    .padding(.trailing, 8)
+                    .frame(width: avatarSize.width, height: avatarSize.height)
+                    .foregroundColor(.black)
             }
         }
     }
 }
 
-#Preview {
-    TopHeaderView(
-        logoImageName: "unieatslogo", appName: "UniEats", userAvatar: "person.crop.circle"
-    )
-}
+// #Preview {
+//    TopHeaderView(
+//        logoImageName: "unieatslogo",
+//        appName: "UniEats",
+//        userAvatar: "person.crop.circle"
+//    )
+//    .frame(height: 70) // parent can control height
+//    .padding(.horizontal) // parent controls padding
+// }

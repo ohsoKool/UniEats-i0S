@@ -1,50 +1,55 @@
-//
-//  PolularRestaurantView.swift
-//  UniEatsPage
-//
-//  Created by Rishikesh Gunda on 9/22/25.
-//
-
 import SwiftUI
 
 struct PopularRestaurantsView: View {
-    @State private var animateRestaurantList: Bool = false
+    @State private var animateList: Bool = false
     var horizontalList: [Int] = [1, 2, 3, 4, 5]
+
     var body: some View {
-        VStack(spacing: -20) {
+        VStack(spacing: 0) {
+            // Header
             HStack {
                 Text("Popular Restaurants")
                     .font(.title3)
                     .fontWeight(.medium)
+                    .opacity(animateList ? 1 : 0)
+                    .offset(x: animateList ? 0 : -40)
+//                    .padding()
+
                 Spacer()
+
                 Image(systemName: "arrow.up.right")
                     .foregroundColor(.orange)
                     .padding(8)
-                    .overlay(Circle()
-                        .fill(.clear)
-                        .stroke(.gray.opacity(0.5)))
+                    .overlay(
+                        Circle()
+                            .stroke(.gray.opacity(0.5))
+                    )
+                    .opacity(animateList ? 1 : 0)
+                    .offset(x: animateList ? 0 : 40)
             }
             .padding()
-            ScrollView(.horizontal) {
-                HStack(spacing: 5) {
+
+            // Horizontal scroll
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
                     ForEach(horizontalList, id: \.self) { _ in
                         RestaurantCardView()
-                            .animation(.easeInOut(duration: 5).repeatForever(autoreverses: true).delay(2), value: animateRestaurantList).offset(x: animateRestaurantList ? 0 : -100)
+                            .opacity(animateList ? 1 : 0.8)
+                            .offset(x: animateList ? 0 : -60)
+                            .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: animateList)
                     }
-                }
-                .onAppear {
-                    animateRestaurantList = true
                 }
             }
         }
-        .overlay(RoundedRectangle(cornerRadius: 36)
-            .fill(.clear)
-            .stroke(.gray.opacity(0.4), lineWidth: 1))
-        .offset(x: animateRestaurantList ? 0 : -100)
-        .animation(.easeOut(duration: 2), value: animateRestaurantList)
+        .overlay(
+            RoundedRectangle(cornerRadius: 36)
+                .stroke(.gray.opacity(0.4), lineWidth: 1)
+        )
+        .onAppear { animateList = true }
     }
 }
 
 #Preview {
     PopularRestaurantsView()
+        .padding(.horizontal)
 }

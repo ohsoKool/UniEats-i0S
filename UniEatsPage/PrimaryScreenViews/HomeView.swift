@@ -8,39 +8,55 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var cart = CartModel() // shared cart for the whole app
+    @StateObject var cart = CartModel() // shared cart
 
     var body: some View {
         NavigationStack {
             ZStack {
                 LinearGradientView()
-                VStack(spacing: 0) {
-                    TopHeaderView(
-                        logoImageName: "unieatslogo",
-                        appName: "UniEats",
-                        userAvatar: "person.crop.circle"
-                    )
-                    UserInfoView(
-                        greetUser: "Hello Rishi :)",
-                        redpin: "redpin",
-                        userlocation: "Shaikpet,Hyderabad,India"
-                    )
-                    .padding([.bottom])
-                    .padding([.leading], 7)
+                    .ignoresSafeArea()
 
-                    SearchBarView()
-//                        .padding(.all,0)
-                    CategoryScrollView()
-                    Spacer()
-                    FeaturedDishView(featuredDish: "burger")
-                        .padding(.bottom, 25)
-                    PopularRestaurantsView()
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        TopHeaderView(
+                            logoImageName: "unieatslogo",
+                            appName: "UniEats",
+                            userAvatar: "person.crop.circle",
+                            logoSize: CGSize(width: 50, height: 50),
+                            avatarSize: CGSize(width: 50, height: 50)
+                        )
+                        .padding(.horizontal, 6)
+//                        .border(.black)
 
-                    VStack {
-                        Spacer()
-                        BottomNavbarView(cart: cart) // pass the cart down
+                        UserInfoView(
+                            greetUser: "Hello Rishi :)",
+                            redpin: "redpin",
+                            userlocation: "Shaikpet, Hyderabad, India"
+                        )
+                        .padding(.all, 10)
+//                        .border(.black)
+
+                        SearchBarView(iconSize: CGSize(width: 25, height: 25))
+                            .padding(.all, 10)
+
+                        CategoryScrollView()
+                            .frame(height: 60)
+                            .padding(.horizontal)
+//                            .border(.black)
+
+                        FeaturedDishView(featuredDish: "burger", imageSize: CGSize(width: 150, height: 150))
+//                            .border(.black)
+
+                        PopularRestaurantsView()
+                            .padding(.vertical, 10)
+//                            .border(.black)
                     }
+//                    .padding(.top)
                 }
+            }
+            .safeAreaInset(edge: .bottom) {
+                BottomNavbarView(cart: cart)
+                    .padding(.horizontal)
             }
         }
         .navigationBarBackButtonHidden()
