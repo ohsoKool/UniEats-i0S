@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var cart = CartModel() // shared cart
+    @ObservedObject var cart: CartModel // shared cart
 
     var body: some View {
         NavigationStack {
@@ -48,15 +48,11 @@ struct HomeView: View {
 //                            .border(.black)
 
                         PopularRestaurantsView()
-                            .padding(.vertical, 10)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 8)
 //                            .border(.black)
                     }
-//                    .padding(.top)
                 }
-            }
-            .safeAreaInset(edge: .bottom) {
-                BottomNavbarView(cart: cart)
-                    .padding(.horizontal)
             }
         }
         .navigationBarBackButtonHidden()

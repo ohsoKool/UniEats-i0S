@@ -8,65 +8,60 @@
 import SwiftUI
 
 struct BottomNavbarView: View {
-    @ObservedObject var cart: CartModel // receives the shared cart
-
+    @ObservedObject var cart: CartModel
+    
     var homeIcon: String = "house.fill"
-    var favoriteIcon: String = "heart"
-    var cartIcon: String = "cart"
-    var settingsicon: String = "gearshape"
-    var bottomMenuColor = Color.orange.opacity(0.6)
-
+    var favoritesIcon: String = "heart.fill"
+    var cartIcon: String = "cart.fill"
+    var settingsIcon: String = "gearshape.fill"
+    
+    @State private var selectedTab: Int = 0
+    
     var body: some View {
-        HStack(alignment: .center, spacing: 15) {
-            Image(systemName: homeIcon)
-                .resizable()
-                .foregroundColor(.black)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 30)
-                .padding(.all, 5)
-                .background(.white)
-                .overlay(Circle().stroke(Color.white, lineWidth: 1))
-                .cornerRadius(20)
-                .padding(8)
-
-            NavigationLink(
-                destination: RestaurantMenu(
+        TabView(selection: $selectedTab) {
+            NavigationStack {
+                HomeView(cart: cart)
+            }
+            .tabItem {
+                Label("Home", systemImage: homeIcon)
+            }
+            .tag(0)
+            
+            NavigationStack {
+                RestaurantMenu(
                     restaurantName: "The Shawarma Wrapz",
                     restaurantLocation: "O.U.Colony",
                     restaurantRating: "4.5⭐",
                     cart: cart
                 )
-            ) {
-                Image(systemName: cartIcon)
-                    .resizable()
-                    .foregroundColor(.black)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30)
-                    .padding(8)
             }
-            NavigationLink(destination: FavoritesDishesView()) {
-                Image(systemName: favoriteIcon)
-                    .resizable()
-                    .foregroundColor(.black)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30)
-                    .padding(8)
+            .tabItem {
+                Label("Cart", systemImage: cartIcon)
             }
-            NavigationLink(destination: SettingsView()) {
-                Image(systemName: settingsicon)
-                    .resizable()
-                    .foregroundColor(.black)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 30)
-                    .padding(8)
+            .tag(1)
+            
+            NavigationStack {
+                FavoritesDishesView()
             }
+            .tabItem {
+                Label("Favorites", systemImage: favoritesIcon)
+            }
+            .tag(2)
+            
+            NavigationStack {
+                SettingsView()
+            }
+            .tabItem {
+                Label("Settings", systemImage: settingsIcon)
+            }
+            .tag(3)
         }
-        .background(bottomMenuColor)
-        .cornerRadius(64)
-        .padding()
+//        .tint(.orange)
+//        .toolbarBackground(Color.orange.opacity(0.1), for: .tabBar)
+//        .toolbarBackground(.visible, for: .tabBar)
     }
 }
 
 #Preview {
-    BottomNavbarView(cart: CartModel(), homeIcon: "house.fill", favoriteIcon: "heart", cartIcon: "cart", settingsicon: "gearshape")
+    BottomNavbarView(cart: CartModel())
 }

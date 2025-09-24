@@ -12,6 +12,8 @@ struct LandingPageView: View {
     @State private var animateGradient = false
     @State private var animateText = false
     @State private var animateExplore = false
+    @StateObject private var cart = CartModel()
+    @State private var showHome = false
 
     var landingPageImage: String = "burger"
 
@@ -48,7 +50,7 @@ struct LandingPageView: View {
                         .offset(y: animateText ? 0 : 15) // slide up
 
                     // Explore button
-                    NavigationLink(destination: HomeView()) {
+                    Button(action: { showHome = true }) {
                         Text("Explore")
                             .font(.title3)
                             .padding()
@@ -83,6 +85,10 @@ struct LandingPageView: View {
                         animateExplore = true
                     }
                 }
+            }
+            .fullScreenCover(isPresented: $showHome) {
+                BottomNavbarView(cart: cart)
+                    .interactiveDismissDisabled(true)
             }
         }
     }

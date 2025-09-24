@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct PopularRestaurantsView: View {
-    @State private var animateList: Bool = false
     var horizontalList: [Int] = [1, 2, 3, 4, 5]
 
     var body: some View {
@@ -11,9 +10,6 @@ struct PopularRestaurantsView: View {
                 Text("Popular Restaurants")
                     .font(.title3)
                     .fontWeight(.medium)
-                    .opacity(animateList ? 1 : 0)
-                    .offset(x: animateList ? 0 : -40)
-//                    .padding()
 
                 Spacer()
 
@@ -24,8 +20,6 @@ struct PopularRestaurantsView: View {
                         Circle()
                             .stroke(.gray.opacity(0.5))
                     )
-                    .opacity(animateList ? 1 : 0)
-                    .offset(x: animateList ? 0 : 40)
             }
             .padding()
 
@@ -33,23 +27,37 @@ struct PopularRestaurantsView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(horizontalList, id: \.self) { _ in
-                        RestaurantCardView()
-                            .opacity(animateList ? 1 : 0.8)
-                            .offset(x: animateList ? 0 : -60)
-                            .animation(.easeInOut(duration: 4).repeatForever(autoreverses: true), value: animateList)
+                        AnimatedRestaurantCardView()
                     }
                 }
+                .padding(.horizontal)
             }
         }
         .overlay(
             RoundedRectangle(cornerRadius: 36)
                 .stroke(.gray.opacity(0.4), lineWidth: 1)
         )
-        .onAppear { animateList = true }
+    }
+}
+
+/// Separate card with independent animation state
+struct AnimatedRestaurantCardView: View {
+    @State private var animate = false
+
+    var body: some View {
+        RestaurantCardView()
+            .opacity(animate ? 1 : 0.8)
+            .offset(x: animate ? -50 : -15)
+            .shadow(radius: 4)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 4).repeatForever(autoreverses: true)) {
+                    animate = true
+                }
+            }
     }
 }
 
 #Preview {
     PopularRestaurantsView()
-        .padding(.horizontal)
+//        .padding(24)
 }
