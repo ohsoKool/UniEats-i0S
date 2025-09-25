@@ -20,7 +20,7 @@ struct BottomNavbarView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
-                HomeView(cart: cart)
+                HomeView(cart: cart, fullName: "Loading...")
             }
             .tabItem {
                 Label("Home", systemImage: homeIcon)

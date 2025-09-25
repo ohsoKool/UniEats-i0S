@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var cart: CartModel // shared cart
-
+    @StateObject private var userVM = UserViewModel()
+    var fullName: String
     var body: some View {
         NavigationStack {
             ZStack {
@@ -29,7 +30,7 @@ struct HomeView: View {
 //                        .border(.black)
 
                         UserInfoView(
-                            greetUser: "Hello Rishi :)",
+                            fullName: userVM.user?.fullName ?? "Loading...",
                             redpin: "redpin",
                             userlocation: "Shaikpet, Hyderabad, India"
                         )
@@ -56,9 +57,16 @@ struct HomeView: View {
             }
         }
         .navigationBarBackButtonHidden()
+        .task {
+            if let uuid = UUID(uuidString: "679f01cc-f673-475d-abb8-5e9e1a6e397e") {
+                await userVM.fetchUser(id: uuid)
+            } else {
+                print("Invalid UUID")
+            }
+        }
     }
 }
 
 #Preview {
-    HomeView(cart: CartModel())
+    HomeView(cart: CartModel(), fullName: "Loading...")
 }

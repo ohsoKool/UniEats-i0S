@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserInfoView: View {
-    var greetUser: String = ""
+    var fullName: String = ""
     var redpin: String
     var userlocation: String
     var redpinSize: CGSize = .init(width: 20, height: 30)
@@ -16,7 +16,7 @@ struct UserInfoView: View {
     var body: some View {
         HStack(spacing: 8) { // minimal spacing; parent can add more if needed
             VStack(alignment: .leading, spacing: 4) {
-                Text(greetUser)
+                Text("Hello \(fullName) :)")
                     .font(.custom("DancingScript-Medium", size: 30))
                     .fontWeight(.medium)
                     .foregroundColor(.black)
@@ -42,7 +42,7 @@ struct UserInfoView: View {
 
 #Preview {
     UserInfoView(
-        greetUser: "Hello Rishi :)",
+        fullName: "Rishi",
         redpin: "redpin",
         userlocation: "Hyderabad, Telangana, India"
     )
