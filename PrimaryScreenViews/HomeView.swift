@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject var cart: CartModel // shared cart
     @StateObject private var userVM = UserViewModel()
+//    @StateObject private var addressVM = addre()
     var fullName: String
     var body: some View {
         NavigationStack {

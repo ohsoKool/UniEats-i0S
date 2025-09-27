@@ -1,42 +1,32 @@
-//
-//  UserAddressesView.swift
-//  UniEatsPage
-//
-//  Created by Rishikesh Gunda on 9/17/25.
-//
-
 import SwiftUI
 
 struct UserAddressesView: View {
-    var addressTypeIcon: String = "house"
     var addressTypes: [String] = ["Home", "Work", "College", "Family", "Other"]
-    var phoneNumber: String = "8328285257"
 
-    var userAddresses: [String] = [
-        "123 Oak Street, Anytown, USA 12345",
-        "456 Maple Avenue, Smallville, USA 67890",
-        "789 Pine Lane, Bigcity, USA 10112",
-        "101 Elm Court, Hamlet, USA 34567",
-        "456 Maple Avenue, Smallville, USA 6789012"
-    ]
+    @StateObject private var addressVM = AddressViewModel()
+
+    // Temporary userId for testing
+    let userId: UUID = .init(uuidString: "679f01cc-f673-475d-abb8-5e9e1a6e397e")!
 
     var body: some View {
         ZStack {
             LinearGradientView()
             VStack {
                 InputDataFieldView(placeholderText: "Search your saved addresses")
+
                 List {
-                    ForEach(Array(zip(userAddresses, addressTypes)), id: \.0) { address, type in
+                    ForEach(Array(zip(addressVM.addresses, addressTypes)), id: \.0.id) { address, type in
                         UserAddressCard(
-                            addressTypeIcon: "house",
+                            address: address,
                             addressType: type,
-                            phoneNumber: phoneNumber,
-                            userAddress: address
+                            phoneNumber: "N/A"
                         )
+                        .environmentObject(addressVM)
                     }
                 }
                 .listStyle(.plain)
                 .cornerRadius(24)
+
                 NavigationLink(destination: AddNewUserAddress()) {
                     HStack {
                         Spacer()
@@ -47,6 +37,9 @@ struct UserAddressesView: View {
             }
             .navigationTitle("ADDRESSES")
             .navigationBarTitleDisplayMode(.inline)
+            .task {
+                await addressVM.fetchUserAddresses(id: userId)
+            }
         }
     }
 }
@@ -56,10 +49,12 @@ struct UserAddressesView: View {
 }
 
 struct UserAddressCard: View {
+    @EnvironmentObject var addressVM: AddressViewModel
+    var address: Address
+
     var addressTypeIcon: String = "house"
     var addressType: String = "Home"
-    var phoneNumber: String = "8328285257"
-    var userAddress: String = "8-1-106/A/172/B, Vinobha Nagar Colony, Shaikpet, Hyderabad - 5000008, Telangana, India"
+    var phoneNumber: String = "99999....."
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -73,7 +68,7 @@ struct UserAddressCard: View {
             }
 
             // Address text
-            Text(userAddress)
+            Text("\(address.street), \(address.city), \(address.state), \(address.postalCode)")
                 .font(.subheadline)
                 .foregroundColor(.black.opacity(0.7))
                 .fixedSize(horizontal: false, vertical: true) // Wraps text
@@ -85,10 +80,19 @@ struct UserAddressCard: View {
 
             // Actions (Edit / Delete)
             HStack(spacing: 30) {
-                Button("EDIT") {}
-                    .foregroundColor(.orange)
-                Button("DELETE") {}
-                    .foregroundColor(.orange)
+                Button("EDIT") {
+                    Task {
+                        await addressVM.updateAddress(address: address)
+                    }
+                }
+                .foregroundColor(.orange)
+
+                Button("DELETE") {
+                    Task {
+                        await addressVM.deleteAddress(id: address.id)
+                    }
+                }
+                .foregroundColor(.orange)
             }
             .font(.subheadline.bold())
         }

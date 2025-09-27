@@ -7,4 +7,6 @@ struct User: Codable, Identifiable {
     let mobile: String
     let dob: Date?
     let gender: String?
+
+    var addresses: [Address]?
 }
