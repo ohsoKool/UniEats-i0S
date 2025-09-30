@@ -1,17 +1,11 @@
-// FavoritesView.swift
-// UniEatsPage
-//
-// Created by Rishikesh Gunda on 9/17/25.
-
 import SwiftUI
 
 struct FavoritesDishesView: View {
-    var dishNames: [String] = ["Burger", "Pizza", "Nachos", "Pasta"]
-    var dishDescs: [String] = [
-        "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-        "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-        "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-        "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce"
+    var favoriteDishes: [Dish] = [
+        Dish(name: "Burger", price: 120, description: "Juicy grilled burger with cheese & lettuce", image: "burger2", restaurant: "McBurgerz"),
+        Dish(name: "Pizza", price: 180, description: "Thin crust pizza with mozzarella & basil", image: "pizza", restaurant: "Pizza Corner"),
+        Dish(name: "Nachos", price: 150, description: "Crispy nachos topped with jalapenos & cheese", image: "tacos", restaurant: "SnackHub"),
+        Dish(name: "Pasta", price: 200, description: "Creamy Alfredo pasta with garlic bread", image: "pasta", restaurant: "Italiano Café")
     ]
 
     var body: some View {
@@ -23,8 +17,8 @@ struct FavoritesDishesView: View {
                     FavoritesTopBar()
 
                     List {
-                        ForEach(dishNames, id: \.self) { dishName in
-                            FavoriteDishCard(dishName: dishName)
+                        ForEach(favoriteDishes) { dish in
+                            FavoriteDishCard(dish: dish)
                         }
                     }
                     .listStyle(.plain)
@@ -38,27 +32,17 @@ struct FavoritesDishesView: View {
 }
 
 #Preview {
-    FavoritesDishesView(
-        dishNames: ["Burger", "Pizza", "Nachos", "Pasta"],
-        dishDescs: [
-            "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-            "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-            "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-            "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce"
-        ]
-    )
+    FavoritesDishesView()
 }
 
+// MARK: - Card
+
 struct FavoriteDishCard: View {
-    var dishName: String = "Pizza"
+    var dish: Dish
 
     var body: some View {
         DishCard(
-            dish: "Pizza",
-            price: 250,
-            img: "pizza",
-            desc: "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-            restaurantName: "Pizza Hut",
+            dish: dish,
             cart: CartModel()
         )
         .padding()
@@ -70,28 +54,22 @@ struct FavoriteDishCard: View {
     }
 }
 
+// MARK: - Top Bar
+
 struct FavoritesTopBar: View {
     var body: some View {
         HStack {
-            NavigationLink(destination: FavoritesDishesView(
-                dishNames: ["Burger", "Pizza", "Nachos", "Pasta"],
-                dishDescs: [
-                    "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-                    "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-                    "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce",
-                    "This is a deliciously cooked Dish with red tomatoes, Jalapenos and Secret Sauce"
-                ]
-            )) {
-                Text("Favorite Dishes")
-                    .font(.title2)
-                    .foregroundColor(.black)
-            }
-
-            Spacer()
-            Button("Favorite Restaurants")
-                {}
+            Text("Favorite Dishes")
                 .font(.title2)
                 .foregroundColor(.black)
+
+            Spacer()
+
+            Button("Favorite Restaurants") {
+                // TODO: navigate to Favorite Restaurants screen
+            }
+            .font(.title2)
+            .foregroundColor(.black)
         }
         .padding()
     }

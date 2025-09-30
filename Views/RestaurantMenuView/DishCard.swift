@@ -6,11 +6,7 @@
 import SwiftUI
 
 struct DishCard: View {
-    var dish: String
-    var price: Int
-    var img: String
-    var desc: String
-    var restaurantName: String = "Kortyard Cafe"
+    var dish: Dish
     var nameRestaurantSeparator = "-"
     
     @ObservedObject var cart: CartModel
@@ -19,34 +15,34 @@ struct DishCard: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text(dish)
+                    Text(dish.name)
                         .font(.system(size: 20))
                         .foregroundColor(.black)
                     Text(nameRestaurantSeparator)
                         .font(.system(size: 20))
                         .foregroundColor(.black)
-                    Text(restaurantName)
+                    Text(dish.restaurant)
                         .font(.system(size: 20))
                         .foregroundColor(.black)
                 }
                 
-                Text("₹\(price)")
+                Text("₹\(dish.price)")
                     .foregroundColor(.black.opacity(0.7))
                 
-                Text(desc)
+                Text(dish.description)
                     .foregroundColor(.gray)
             }
             
             Spacer()
             
-            Image(img)
+            Image(dish.image)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 100, height: 100)
                 .cornerRadius(8)
                 .overlay(
                     Button(action: {
-                        cart.addItem(dish: dish)
+                        cart.addItem(dish: dish.name)
                         // print("\(dish) added to cart!")
                     }) {
                         Text("ADD")
@@ -65,11 +61,15 @@ struct DishCard: View {
 }
 
 #Preview {
-    DishCard(
-        dish: "Pasta",
+    let sampleDish = Dish(
+        name: "Pasta",
         price: 499,
-        img: "pasta",
-        desc: "Secret Recipe Filled with Joy",
+        description: "Secret Recipe Filled with Joy", image: "pasta",
+        restaurant: "Italian Bistro"
+    )
+    
+    DishCard(
+        dish: sampleDish,
         cart: CartModel()
     )
 }

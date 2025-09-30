@@ -12,6 +12,7 @@ struct LandingPageView: View {
     @State private var animateGradient = false
     @State private var animateText = false
     @State private var animateExplore = false
+
     @StateObject private var cart = CartModel()
     @State private var showHome = false
 
@@ -42,12 +43,20 @@ struct LandingPageView: View {
                         .offset(y: animateBurger ? -20 : 20)
 
                     // Welcome text
-                    Text("Welcome to UniEats")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .opacity(animateText ? 1 : 0) // fade in
-                        .offset(y: animateText ? 0 : 15) // slide up
+                    HStack {
+                        Text("Welcome to")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .opacity(animateText ? 1 : 0) // fade in
+                            .offset(y: animateText ? 0 : 15) // slide upText("Welcome to MeritMeals")
+                        Text("MeritMeals")
+                            .font(.custom("DancingScript-Bold", size: 32))
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .opacity(animateText ? 1 : 0) // fade in
+                            .offset(y: animateText ? 0 : 15) // slide up
+                    }
 
                     // Explore button
                     Button(action: { showHome = true }) {

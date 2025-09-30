@@ -1,13 +1,6 @@
-//
-//  FilterChips.swift
-//  UniEatsPage
-//
-//  Created by Rishikesh Gunda on 9/19/25.
-//
-
 import SwiftUI
 
-struct FilterChips: View {
+struct FilterCategoriesView: View {
     var filters: [String]
 
     var body: some View {

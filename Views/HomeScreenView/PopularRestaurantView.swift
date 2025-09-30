@@ -2,6 +2,10 @@ import SwiftUI
 
 struct PopularRestaurantsView: View {
     var horizontalList: [Int] = [1, 2, 3, 4, 5]
+    var restaurantBanner: [String] = ["kortyard", "burgerking", "kfc", "dominos", "subway", "pizzahut"]
+    var restaurantName: [String] = ["Kortyard Cafe", "Burger King", "KFC", "Domino's", "Subway", "Pizza Hut"]
+    var restaurantLocation: [String] = ["Jubilee Hills", "Tolichowki", "Shaikpet", "O.U.Colony", "Mehdipatnam", "Kondapur"]
+    var customFontName: String = "DancingScript-Bold"
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,20 +25,29 @@ struct PopularRestaurantsView: View {
                             .stroke(.gray.opacity(0.5))
                     )
             }
-            .padding()
+            .padding([.horizontal, .top], 16)
+//            .padding()
 
             // Horizontal scroll
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(horizontalList, id: \.self) { _ in
-                        AnimatedRestaurantCardView()
+                    ForEach(Array(zip(zip(restaurantBanner, restaurantName), restaurantLocation)), id: \.0.0) { pair, location in
+                        let banner = pair.0
+                        let name = pair.1
+
+                        AnimatedRestaurantCardView(
+                            restaurantBanner: banner,
+                            restaurantName: name,
+                            restaurantLocation: location,
+                            customFontName: customFontName
+                        )
                     }
                 }
                 .padding(.horizontal)
             }
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 36)
+            RoundedRectangle(cornerRadius: 24)
                 .stroke(.gray.opacity(0.4), lineWidth: 1)
         )
     }
@@ -42,10 +55,14 @@ struct PopularRestaurantsView: View {
 
 /// Separate card with independent animation state
 struct AnimatedRestaurantCardView: View {
+    var restaurantBanner: String = "burgerking"
+    var restaurantName: String = "Burger King"
+    var restaurantLocation: String = "Tolichowki"
+    var customFontName: String = "DancingScript-Bold"
     @State private var animate = false
 
     var body: some View {
-        RestaurantCardView()
+        RestaurantCardView(restaurantBanner: restaurantBanner, restaurantName: restaurantName, restaurantLocation: restaurantLocation, customFontName: customFontName)
             .opacity(animate ? 1 : 0.8)
             .offset(x: animate ? -50 : -15)
             .shadow(radius: 4)
@@ -60,4 +77,5 @@ struct AnimatedRestaurantCardView: View {
 #Preview {
     PopularRestaurantsView()
 //        .padding(24)
+//    AnimatedRestaurantCardView()
 }

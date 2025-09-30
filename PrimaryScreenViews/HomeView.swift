@@ -19,10 +19,10 @@ struct HomeView: View {
                     .ignoresSafeArea()
 
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
+                    LazyVStack(spacing: 0) {
                         TopHeaderView(
                             logoImageName: "unieatslogo",
-                            appName: "UniEats",
+                            appName: "MeritMeals",
                             userAvatar: "person.crop.circle",
                             logoSize: CGSize(width: 50, height: 50),
                             avatarSize: CGSize(width: 50, height: 50)
@@ -46,11 +46,15 @@ struct HomeView: View {
                             .padding(.horizontal)
 //                            .border(.black)
 
-                        FeaturedDishView(featuredDish: "burger", imageSize: CGSize(width: 150, height: 150))
-//                            .border(.black)
+//                        FeaturedDishView(featuredDish: "burger", imageSize: CGSize(width: 150, height: 150))
+                        ////                            .border(.black)
+
+                        PopularDishesView(recommendedProducts: ["burgerr", "pizza", "dalchawal", "biryani", "sandwich"], recommendedProductNames: ["Burger", "Pizza", "Dal Chawal", "Biryani", "Sandwich"])
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
 
                         PopularRestaurantsView()
-                            .padding(.vertical, 8)
+                            .padding(.vertical, 4)
                             .padding(.horizontal, 8)
 //                            .border(.black)
                     }

@@ -1,23 +1,12 @@
-//
-//  DishList.swift
-//  UniEatsPage
-//
-//  Created by Rishikesh Gunda on 9/19/25.
-//
-
 import SwiftUI
 
 struct DishList: View {
-    var dishNames: [String]
-    var dishPrices: [Int]
-    var dishImages: [String]
-
+    var dishes: [Dish]
     @ObservedObject var cart: CartModel
 
     var body: some View {
-        List(Array(zip(dishNames, zip(dishPrices, dishImages))), id: \.0) { _, pair in
-            let (price, img) = pair
-            DishCard(dish: "Burger", price: price, img: img, desc: "Secret recipe filled with Joy!", cart: cart)
+        List(dishes) { dish in
+            DishCard(dish: dish, cart: cart)
                 .listRowBackground(Color.white)
         }
         .listStyle(.plain)
@@ -25,5 +14,14 @@ struct DishList: View {
 }
 
 #Preview {
-    DishList(dishNames: ["Chicken 65", "Burger", "Pizza", "Pasta", "Tacos", "FrenchFries"], dishPrices: [100, 90, 180, 230, 120, 60], dishImages: ["chicken65", "burger2", "pasta", "pizza", "tacos", "frenchfries"], cart: CartModel())
+    let sampleDishes = [
+        Dish(name: "Chicken 65", price: 100, description: "Crispy & spicy chicken starter", image: "chicken65", restaurant: "Andhra Spice"),
+        Dish(name: "Burger", price: 90, description: "Classic cheeseburger with fries", image: "burger2", restaurant: "Burger King"),
+        Dish(name: "Pizza", price: 180, description: "Farmhouse pizza with fresh veggies", image: "pizza", restaurant: "Domino's"),
+        Dish(name: "Pasta", price: 230, description: "Creamy Alfredo pasta", image: "pasta", restaurant: "Italian Bistro"),
+        Dish(name: "Tacos", price: 120, description: "Mexican street-style tacos", image: "tacos", restaurant: "Taco Bell"),
+        Dish(name: "French Fries", price: 60, description: "Golden crispy fries", image: "frenchfries", restaurant: "KFC")
+    ]
+
+    DishList(dishes: sampleDishes, cart: CartModel())
 }

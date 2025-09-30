@@ -8,10 +8,24 @@ struct RestaurantMenu: View {
     var dishNames: [String] = ["Chicken 65", "Burger", "Pizza", "Pasta", "Tacos", "FrenchFries"]
     var dishPrices: [Int] = [100, 90, 180, 230, 120, 60]
     var filters: [String] = ["Veg", "Non Veg", "Healthy", "Egg", "Recommended"]
-    var dishImages: [String] = ["chicken65", "burger2", "pasta", "pizza", "tacos", "frenchfries"]
-    
+    var dishImages: [String] = ["chicken65", "burger2", "pizza", "pasta", "tacos", "frenchfries"]
+
     @ObservedObject var cart: CartModel
-    
+
+    // Build dishes from parallel arrays
+    var dishes: [Dish] {
+        zip(zip(dishNames, dishPrices), dishImages).map { pair, img in
+            let (name, price) = pair
+            return Dish(
+                name: name,
+                price: price,
+                description: "Secret recipe filled with Joy!",
+                image: img,
+                restaurant: restaurantName
+            )
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ZStack {
@@ -22,25 +36,17 @@ struct RestaurantMenu: View {
                         restaurantLocation: restaurantLocation,
                         restaurantRating: restaurantRating
                     )
-                
-                    FilterChips(filters: filters)
-                
+
+                    FilterCategoriesView(filters: filters)
+
                     DishList(
-                        dishNames: dishNames,
-                        dishPrices: dishPrices,
-                        dishImages: dishImages,
+                        dishes: dishes,
                         cart: cart
                     )
                     .cornerRadius(24)
                 }
-//                VStack {
-//                    Spacer()
-//                    BottomNavbarView(cart: cart) // pass the cart down
-//                }
-                .navigationTitle("Menu")
             }
         }
-//        .navigationBarBackButtonHidden()
     }
 }
 
