@@ -20,12 +20,16 @@ struct AddNewUserAddress: View {
                     InputDataFieldView(placeholderText: "Mobile")
                     InputDataFieldView(placeholderText: "Instructions: e.g. Ring the Bell")
                 }
-                //            Spacer()
+//                Spacer()
                 HStack(spacing: 12) {
                     SaveButtonView(buttonName: "Home")
-                    SaveButtonView(InvertedButton: true, buttonName: "Work")
-                    SaveButtonView(InvertedButton: true, buttonName: "Other")
+                    SaveButtonView(buttonName: "Work")
+                    SaveButtonView(buttonName: "Other")
                 }
+                SaveButtonView(
+                    InvertedButton: true,
+                    buttonName: "Save"
+                )
             }
             .navigationTitle("ADD NEW ADDRESS")
             .navigationBarTitleDisplayMode(.inline)

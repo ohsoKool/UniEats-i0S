@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct UserAddressesView: View {
-    var addressTypes: [String] = ["Home", "Work", "College", "Family", "Other"]
-
     @StateObject private var addressVM = AddressViewModel()
 
     // Temporary userId for testing
@@ -15,13 +13,9 @@ struct UserAddressesView: View {
                 InputDataFieldView(placeholderText: "Search your saved addresses")
 
                 List {
-                    ForEach(Array(zip(addressVM.addresses, addressTypes)), id: \.0.id) { address, type in
-                        UserAddressCard(
-                            address: address,
-                            addressType: type,
-                            phoneNumber: "N/A"
-                        )
-                        .environmentObject(addressVM)
+                    ForEach(addressVM.addresses, id: \.id) { address in
+                        UserAddressCard(address: address)
+                            .environmentObject(addressVM)
                     }
                 }
                 .listStyle(.plain)
@@ -52,9 +46,14 @@ struct UserAddressCard: View {
     @EnvironmentObject var addressVM: AddressViewModel
     var address: Address
 
-    var addressTypeIcon: String = "house"
-    var addressType: String = "Home"
-    var phoneNumber: String = "99999....."
+    var addressTypeIcon: String {
+        switch address.addressType {
+        case "Home": return "house"
+        case "Work": return "briefcase"
+        case "College": return "building.columns"
+        default: return "mappin.and.ellipse"
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -62,7 +61,7 @@ struct UserAddressCard: View {
             HStack(spacing: 8) {
                 Image(systemName: addressTypeIcon)
                     .foregroundColor(.gray)
-                Text(addressType)
+                Text(address.addressType)
                     .font(.headline)
                     .foregroundColor(.black)
             }
@@ -74,9 +73,11 @@ struct UserAddressCard: View {
                 .fixedSize(horizontal: false, vertical: true) // Wraps text
 
             // Phone number
-            Text("Phone number: \(phoneNumber)")
-                .font(.subheadline)
-                .foregroundColor(.black.opacity(0.7))
+            if let phone = address.phoneNumber {
+                Text("Phone number: \(phone)")
+                    .font(.subheadline)
+                    .foregroundColor(.black.opacity(0.7))
+            }
 
             // Actions (Edit / Delete)
             HStack(spacing: 30) {
